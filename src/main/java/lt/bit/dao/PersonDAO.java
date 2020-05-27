@@ -11,11 +11,13 @@ import org.springframework.data.repository.query.Param;
  * @author Lina
  */
 public interface PersonDAO extends JpaRepository<Person, Integer> {
-
-    @Query("select p from Person p where "
+// + " upper(p.firstName) like upper(concat('%', :filter, '%')) or "
+    @Query("select p from Person p where " 
             + " upper(p.firstName) like upper(concat('%', :filter, '%')) or "
-            + " upper(p.lastName) like upper(concat('%', :filter, '%')) "
-            + " order by p.firstName")
+            + " upper(p.lastName) like upper(concat('%', :filter, '%')) or "
+            + " upper(p.birthDate) like upper(concat('%', :filter, '%')) or "
+            + " upper(p.salary) like upper(concat('%', :filter, '%')) "
+            + " order by p.lastName, p.firstName")
     public List<Person> filteredList(@Param("filter") String filter);
 // kai kviesim jis sita "filter" istatys i ta vieta kur uzklausoje filter
     //cia velgi nebuvo rasyta methodo implementacija, bet tik deklaravo methoda!
