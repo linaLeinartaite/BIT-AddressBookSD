@@ -50,7 +50,8 @@ public class ControllerP {
         ModelAndView mav = new ModelAndView("people");
         List<Person> listP;
         if (filter == null) {
-            listP = personDAO.findAll(Sort.by("firstName"));
+           // listP = personDAO.findAll(Sort.by("lasttName"));
+             listP = personDAO.orderedListP();
         } else {
             listP = personDAO.filteredList(filter);
         }

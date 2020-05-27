@@ -25,7 +25,7 @@ public interface PersonDAO extends JpaRepository<Person, Integer> {
     //perduos i query kintamajam (zymimas su : >> :filter
     
     @Query("select p from Person p "
-            + " order by p.firstName")
+            + " order by p.lastName, p.firstName")
     public List<Person> orderedListP(); // sitaas turi grazinti isrusiuota pagal varda (galiu deti si methoda vietoj 
     //findAll(SortedBy(firstName);
     
