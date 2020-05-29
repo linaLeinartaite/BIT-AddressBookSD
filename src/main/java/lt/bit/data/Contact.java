@@ -17,7 +17,7 @@ import javax.persistence.Transient;
  *
  * @author Lina
  */
-@Entity //reiskia kad sitos klasess atstovai bus saugomi i DB
+@Entity 
 @Table(name = "contact")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Contact {
@@ -25,17 +25,13 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-  //  @Column(name = "person_id")
-  //  private Integer person_id;
     @Column(name = "contact")
     private String contact;
     @Column(name = "contact_type")
     private String type;
     
-  //  @Transient
-   // @OneToMany
-    @ManyToOne(fetch = FetchType.LAZY) //ta puse kuri yra many to one ta dazniausia
-         //!!!!!!!!!!!!yra siunciama (t.y. kai siunti adresa siunti ir persona kuriam jini priklauso)
+ 
+    @ManyToOne(fetch = FetchType.LAZY)         
     private Person person;
 
     public Contact() {
@@ -48,16 +44,6 @@ public class Contact {
     public void setId(Integer Id) {
         this.id = Id;
     }
-
-//    public Integer getPerson_id() {
-//        return person_id;
-//    }
-//
-//    public void setPerson_id(Integer person_id) {
-//        this.person_id = person_id;
-//    }
-//
-//    
     public String getContact() {
         return contact;
     }
@@ -110,7 +96,6 @@ public class Contact {
     @Override
     public String toString() {
         return "Contact{" + "id=" + id 
-            //    + ", person_id=" + person_id 
                 + ", contact=" + contact + ", type=" + type + '}';
     }
 

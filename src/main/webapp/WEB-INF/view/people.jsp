@@ -23,9 +23,20 @@
         <div class="container">
             <div id="title"><h1>DARBUOTOJŲ SĄRAŠAS</h1></div> 
             <div class="in-line">
-                <form method="POST">
-                    <input class="btn" name="filter" placeholder="Raktinis žodis">
+               <form method="POST">
+                    <input id="fil" class="btn" name="filter" placeholder="Raktinis žodis">                    
                     <input class="btn btn-grey mr-2" type="submit" value="Ieškoti"> 
+                    <%
+                        String filter = request.getParameter("filter");
+                        if (filter != null) {
+                    %>
+                    <script>
+                        let fil = document.getElementById("fil");
+                        fil.setAttribute("value", "<%=filter%>");
+                    </script>
+                    <%
+                        }
+                    %>
                 </form>
                 <a class="btn btn-green" href="edit">Pridėti&nbsp;Naują</a>
             </div>

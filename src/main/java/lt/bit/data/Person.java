@@ -26,16 +26,14 @@ import javax.persistence.Transient;
  *
  * @author Lina
  */
-@Entity //reiskia kad sitos klasess atstovai bus saugomi i DB
-@Table(name = "person") //jei nebutu anotacijos Table tai saugotu ??? (kazkas su Diz MAz raide)
-//@NamedQuery(name="Person.byId", query="")
+@Entity 
+@Table(name = "person")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Person {
 
-    @Id //reiskia kad tai DB'e bus primary key'us; ir name nerasom bo sutampa id == id (ir DB)
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; //kodel Integer o ne int bus aiskiau kai dirbsim su duomenu bazem;
-    // private static int  nextId=1; 
+    private Integer id; 
     @Column(name = "first_name")
     private String firstName;
     
@@ -48,22 +46,16 @@ public class Person {
     private Date birthDate;
     private BigDecimal salary;
 
-//    @Transient //reiskia kad nesaugosim i duomenu baze
-    @OneToMany(mappedBy = "person") //kai mappedBy tai join column'a uzkomentuojam
-   // @JoinColumn(name = "person_id")
+    @OneToMany(mappedBy = "person") 
     @JsonIgnore
     private List<Address> addresses;
     
-//    @Transient    
-    @OneToMany(mappedBy = "person") //pasivi puse turi buti ta kuri turi OneTomany t.y ta kuri turi lista (tai va sita ir yra)
-    //@JoinColumn(name = "person_id")
+
+    @OneToMany(mappedBy = "person")
     @JsonIgnore
     private List<Contact> contacts;
 
     public Person() {
-       // List <Address> addresses = new ArrayList<>();
-       // List <Contact> contacts = new ArrayList<>();
-        //DEST : cia sukurti tuscius arrejus addresses ir contacts
     }
 
     @Override

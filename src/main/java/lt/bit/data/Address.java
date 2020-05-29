@@ -20,8 +20,8 @@ import javax.persistence.Transient;
  *
  * @author Lina
  */
-@Entity //reiskia kad sitos klasess atstovai bus saugomi i DB
-@Table(name = "address") //sito reik nes duomenu bazeje lentele yra mazaja reide parasyta
+@Entity 
+@Table(name = "address") 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Address {
 
@@ -36,9 +36,7 @@ public class Address {
     @Column(name = "postal_code")
     private String postCode;
 
-    // @Transient //reiskia kad adresas nezino savo tecio
-    // @OneToMany
-    @ManyToOne(fetch = FetchType.LAZY) //
+    @ManyToOne(fetch = FetchType.LAZY)
     private Person person;
 
     public Address() {
